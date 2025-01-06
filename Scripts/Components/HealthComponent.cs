@@ -14,9 +14,9 @@ public partial class HealthComponent : Node
     [Signal]
     public delegate void OnHealthEventHandler(int healAmount, int currentHealth);
 
-    [Export] public int MaxHealth { get; set; } = 100;
+    [Export] public int MaxHealth { get; private set; } = 100;
 
-    public int CurrentHealth { get; set; }
+    public int CurrentHealth { get; private set; }
 
     public override void _Ready()
     {
