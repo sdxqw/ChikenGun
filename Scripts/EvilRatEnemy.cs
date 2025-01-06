@@ -3,7 +3,7 @@ using Godot;
 
 namespace ChikenGun.Scripts;
 
-public partial class RedotEnemy : CharacterBody2D
+public partial class EvilRatEnemy : CharacterBody2D
 {
     [Export] private HealthComponent HealthComponent { get; set; }
 
