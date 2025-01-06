@@ -2,9 +2,10 @@
 
 namespace ChikenGun.Scripts.Components;
 
+[GlobalClass]
 public partial class HurtBoxComponent : Area2D
 {
-    [Export] public HealthComponent HealthComponent { get; set; }
+    [Export] public HealthComponent HealthComponent { get; private set; }
 
     public override void _Ready()
     {

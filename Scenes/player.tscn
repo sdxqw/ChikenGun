@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://c7swggpe6kuc1"]
+
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_nnb3j"]
+[ext_resource type="Script" path="res://Scripts/Components/HealthComponent.cs" id="1_u0vpe"]
+[ext_resource type="Script" path="res://Scripts/Components/HurtBoxComponent.cs" id="2_xe6tv"]
+[ext_resource type="Texture2D" uid="uid://rcd5fv0f1nlt" path="res://icon.svg" id="3_c02qd"]
+[ext_resource type="Script" path="res://Scripts/Components/HitBoxComponent.cs" id="5_clfq6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6gp0g"]
+radius = 97.8673
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4et4"]
+radius = 95.2733
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dy7mq"]
+size = Vector2(130, 127)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthComponent")]
+script = ExtResource("1_nnb3j")
+HealthComponent = NodePath("HealthComponent")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("1_u0vpe")
+
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("HealthComponent")]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("2_xe6tv")
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+shape = SubResource("CircleShape2D_6gp0g")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("5_clfq6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_s4et4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_c02qd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_dy7mq")

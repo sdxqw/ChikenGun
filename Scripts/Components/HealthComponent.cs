@@ -14,9 +14,9 @@ public partial class HealthComponent : Node
     [Signal]
     public delegate void OnHealthEventHandler(int healAmount, int currentHealth);
 
-    [Export] private int MaxHealth { get; set; } = 100;
+    [Export] public int MaxHealth { get; set; } = 100;
 
-    private int CurrentHealth { get; set; }
+    public int CurrentHealth { get; set; }
 
     public override void _Ready()
     {
@@ -25,15 +25,21 @@ public partial class HealthComponent : Node
 
     public void TakeDamage(int damageToApply)
     {
-        CurrentHealth -= damageToApply;
-        EmitSignal(nameof(OnDamageEventHandler), damageToApply, CurrentHealth);
-        if (CurrentHealth <= 0) EmitSignal(nameof(OnDeathEventHandler));
+        if (CurrentHealth > 0)
+        {
+            CurrentHealth -= damageToApply;
+            EmitSignal(nameof(OnDamage), damageToApply, CurrentHealth);
+        }
+        else
+        {
+            EmitSignal(nameof(OnDeath));
+        }
     }
 
     public void Heal(int healAmount)
     {
         CurrentHealth += healAmount;
-        EmitSignal(nameof(OnHealthEventHandler), healAmount, CurrentHealth);
+        EmitSignal(nameof(OnHealth), healAmount, CurrentHealth);
         if (CurrentHealth > MaxHealth) CurrentHealth = MaxHealth;
     }
 }

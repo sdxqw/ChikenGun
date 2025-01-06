@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d08i78qc8af38"]
+
+[ext_resource type="PackedScene" uid="uid://c7swggpe6kuc1" path="res://Scenes/player.tscn" id="1_mb5hx"]
+[ext_resource type="PackedScene" uid="uid://b3fs8h68agwhb" path="res://Scenes/redot_enemy.tscn" id="2_6gnt1"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_mb5hx")]
+position = Vector2(49, 17)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="RedotEnemy" parent="." instance=ExtResource("2_6gnt1")]
+position = Vector2(366, 2)
