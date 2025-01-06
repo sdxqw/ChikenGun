@@ -11,7 +11,7 @@ public partial class EvilRatEnemy : CharacterBody2D
     {
         if (HealthComponent == null)
         {
-            GD.PushError("RedotEnemy does not have a HealthComponent assigned!");
+            GD.PushError("EvilRatEnemy does not have a HealthComponent assigned!");
             return;
         }
 
@@ -20,7 +20,7 @@ public partial class EvilRatEnemy : CharacterBody2D
 
     private void OnDamage(int damageTaken, int currentHealth)
     {
-        GD.Print($"RedotEnemy took {damageTaken} damage! Current health: {currentHealth}");
+        GD.Print($"EvilRatEnemy took {damageTaken} damage! Current health: {currentHealth}");
     }
 
     public override void _PhysicsProcess(double delta)
