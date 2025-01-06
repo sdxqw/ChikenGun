@@ -1,0 +1,113 @@
+[gd_scene load_steps=16 format=3 uid="uid://b3fs8h68agwhb"]
+
+[ext_resource type="Script" path="res://Scripts/RedotEnemy.cs" id="1_ibo4v"]
+[ext_resource type="Script" path="res://Scripts/Components/HitBoxComponent.cs" id="2_ra1wk"]
+[ext_resource type="Script" path="res://Scripts/Components/HurtBoxComponent.cs" id="3_dkfgx"]
+[ext_resource type="Script" path="res://Scripts/Components/HealthComponent.cs" id="4_qr4vx"]
+[ext_resource type="PackedScene" uid="uid://nhvgxrk7dmeb" path="res://Scenes/health_bar.tscn" id="6_hx5ag"]
+[ext_resource type="Texture2D" uid="uid://cfpr26yl1rrey" path="res://Resources/characters.tres" id="6_ra08p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gbx0m"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ra6bu"]
+radius = 9.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1f1j"]
+size = Vector2(14, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clp6v"]
+atlas = ExtResource("6_ra08p")
+region = Rect2(0, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs0b5"]
+atlas = ExtResource("6_ra08p")
+region = Rect2(64, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sjeg"]
+atlas = ExtResource("6_ra08p")
+region = Rect2(80, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycped"]
+atlas = ExtResource("6_ra08p")
+region = Rect2(96, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8avhw"]
+atlas = ExtResource("6_ra08p")
+region = Rect2(112, 192, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_liu7i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clp6v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs0b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sjeg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycped")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8avhw")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}]
+
+[node name="EvilRatEnemy" type="CharacterBody2D" node_paths=PackedStringArray("HealthComponent")]
+script = ExtResource("1_ibo4v")
+HealthComponent = NodePath("HealthComponent")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_qr4vx")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("2_ra1wk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_gbx0m")
+
+[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("HealthComponent")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_dkfgx")
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+shape = SubResource("CircleShape2D_ra6bu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_k1f1j")
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("HealthComponent") instance=ExtResource("6_hx5ag")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -10.0
+offset_right = 259.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_liu7i")
+animation = &"idle"
+autoplay = "idle"
