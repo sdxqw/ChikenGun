@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://b3fs8h68agwhb"]
 
-[ext_resource type="Script" path="res://Scripts/RedotEnemy.cs" id="1_ibo4v"]
+[ext_resource type="Script" path="res://Scripts/EvilRatEnemy.cs" id="1_ibo4v"]
 [ext_resource type="Script" path="res://Scripts/Components/HitBoxComponent.cs" id="2_ra1wk"]
 [ext_resource type="Script" path="res://Scripts/Components/HurtBoxComponent.cs" id="3_dkfgx"]
 [ext_resource type="Script" path="res://Scripts/Components/HealthComponent.cs" id="4_qr4vx"]
