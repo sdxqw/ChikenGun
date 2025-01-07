@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsnhel0bi4js5"]
+
+[ext_resource type="Script" path="res://Scripts/Hud.cs" id="1_8auvl"]
+[ext_resource type="Texture2D" uid="uid://dv8qsa23nsh1a" path="res://Assets/HealthBar/health_bar_background.png" id="1_neo5v"]
+[ext_resource type="Texture2D" uid="uid://c21lwjwy4kb4g" path="res://Assets/HealthBar/health_bar.png" id="2_d2g1j"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8auvl")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 284.0
+offset_bottom = 33.0
+texture_under = ExtResource("1_neo5v")
+texture_progress = ExtResource("2_d2g1j")

@@ -1,16 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://d08i78qc8af38"]
+[gd_scene load_steps=5 format=3 uid="uid://d08i78qc8af38"]
 
 [ext_resource type="PackedScene" uid="uid://c7swggpe6kuc1" path="res://Scenes/player.tscn" id="1_mb5hx"]
-[ext_resource type="PackedScene" uid="uid://b3fs8h68agwhb" path="res://Scenes/evil_rat_enemy.tscn" id="2_6gnt1"]
+[ext_resource type="PackedScene" uid="uid://bsnhel0bi4js5" path="res://Scenes/hud.tscn" id="3_2v2vm"]
+[ext_resource type="PackedScene" uid="uid://dgivmy6n8xhy6" path="res://Scenes/Enemies/yellow_bear.tscn" id="3_hqygf"]
+[ext_resource type="PackedScene" uid="uid://uy5jb7u2g82h" path="res://Scenes/Enemies/black_bear.tscn" id="4_xj1sv"]
 
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_mb5hx")]
-position = Vector2(49, 17)
+position = Vector2(-21, -35)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(5, 5)
 position_smoothing_enabled = true
 
-[node name="EvilRatEnemy" parent="." instance=ExtResource("2_6gnt1")]
-position = Vector2(71, 17)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" node_paths=PackedStringArray("Player") instance=ExtResource("3_2v2vm")]
+Player = NodePath("../../Player")
+
+[node name="YellowBear" parent="." instance=ExtResource("3_hqygf")]
+position = Vector2(30, -34)
+
+[node name="BlackBear" parent="." instance=ExtResource("4_xj1sv")]
+position = Vector2(-69, -34)

@@ -7,7 +7,7 @@ public partial class Player : CharacterBody2D
 {
     private const float Speed = 300.0f;
 
-    [Export] private HealthComponent HealthComponent { get; set; }
+    [Export] public HealthComponent HealthComponent { get; private set; }
     [Export] private AnimatedSprite2D _animated;
 
     public override void _Ready()

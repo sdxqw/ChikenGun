@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://dgivmy6n8xhy6"]
+
+[ext_resource type="PackedScene" uid="uid://bxe04kr8pb3gg" path="res://Scenes/enemy.tscn" id="1_gopob"]
+[ext_resource type="Texture2D" uid="uid://cfpr26yl1rrey" path="res://Resources/characters.tres" id="2_2uabo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wcjru"]
+radius = 9.05539
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vjd1e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5pvj"]
+size = Vector2(14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxlnh"]
+atlas = ExtResource("2_2uabo")
+region = Rect2(64, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v74hu"]
+atlas = ExtResource("2_2uabo")
+region = Rect2(64, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psmrr"]
+atlas = ExtResource("2_2uabo")
+region = Rect2(80, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sg8c"]
+atlas = ExtResource("2_2uabo")
+region = Rect2(96, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnmvo"]
+atlas = ExtResource("2_2uabo")
+region = Rect2(112, 288, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eg5sw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxlnh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v74hu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psmrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sg8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnmvo")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}]
+
+[node name="YellowBear" instance=ExtResource("1_gopob")]
+
+[node name="HitBoxComponent" parent="." index="1"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent" index="0"]
+shape = SubResource("CircleShape2D_wcjru")
+
+[node name="HurtBoxComponent" parent="." index="2" node_paths=PackedStringArray("HealthComponent")]
+collision_layer = 4
+collision_mask = 2
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" index="0"]
+shape = SubResource("CircleShape2D_vjd1e")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_v5pvj")
+
+[node name="AnimatedSprite2D" parent="." index="4"]
+sprite_frames = SubResource("SpriteFrames_eg5sw")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="HealthBar" parent="." index="5" node_paths=PackedStringArray("HealthComponent")]
+offset_top = -11.0
+offset_bottom = 10.0
+HealthComponent = NodePath("../HealthComponent")

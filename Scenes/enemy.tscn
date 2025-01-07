@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxe04kr8pb3gg"]
+
+[ext_resource type="Script" path="res://Scripts/Components/HealthComponent.cs" id="1_kah7y"]
+[ext_resource type="Script" path="res://Scripts/Components/HitBoxComponent.cs" id="2_ev67j"]
+[ext_resource type="Script" path="res://Scripts/Components/HurtBoxComponent.cs" id="3_6j2g0"]
+[ext_resource type="PackedScene" uid="uid://nhvgxrk7dmeb" path="res://Scenes/health_bar.tscn" id="4_ddgac"]
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("1_kah7y")
+
+[node name="HitBoxComponent" type="Area2D" parent="."]
+script = ExtResource("2_ev67j")
+
+[node name="HurtBoxComponent" type="Area2D" parent="."]
+script = ExtResource("3_6j2g0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="HealthBar" parent="." instance=ExtResource("4_ddgac")]
+offset_left = -13.0
+offset_top = -17.0
+offset_right = 259.0
+offset_bottom = 4.0
+scale = Vector2(0.1, 0.1)
