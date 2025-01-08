@@ -1,22 +1,24 @@
 using Godot;
+using GodotUtilities;
 
 namespace ChikenGun.Scripts;
 
+[Scene]
 public partial class Hud : Control
 {
 	[Export] private Player Player { get; set; }
+	[Node]
 	private TextureProgressBar _healthBar;
+
+	public override void _Notification(int what)
+	{
+		if (what == NotificationSceneInstantiated) {
+			WireNodes(); 
+		}
+	}
 
 	public override void _Ready()
 	{
-		_healthBar = GetNode<TextureProgressBar>(nameof(TextureProgressBar));
-		if (_healthBar == null)
-		{
-			GD.PushError("Hud does not have a HealthBar assigned!");
-			return;
-		}
-		
-		
 		if (Player == null)
 		{
 			GD.PushError("Hud does not have a Player assigned!");

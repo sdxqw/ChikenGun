@@ -1,29 +1,26 @@
 using ChikenGun.Scripts.Components;
 using Godot;
+using GodotUtilities;
 
 namespace ChikenGun.Scripts;
 
+[Scene]
 public partial class Player : CharacterBody2D
 {
     private const float Speed = 300.0f;
 
-    [Export] public HealthComponent HealthComponent { get; private set; }
-    [Export] private AnimatedSprite2D _animated;
+    [Node] public HealthComponent HealthComponent { get; private set; }
+    [Node] private AnimatedSprite2D AnimatedSprite2D { get; set; }
+    
+    public override void _Notification(int what)
+    {
+        if (what == NotificationSceneInstantiated) {
+            WireNodes();
+        }
+    }
 
     public override void _Ready()
     {
-        if (HealthComponent == null)
-        {
-            GD.PushError("Player does not have a HealthComponent assigned!");
-            return;
-        }
-        
-        if (_animated == null)
-        {
-            GD.PushError("Player does not have an AnimatedSprite2D assigned!");
-            return;
-        }
-
         HealthComponent.OnDamage += OnDamage;
     }
 
@@ -40,22 +37,22 @@ public partial class Player : CharacterBody2D
         if (direction != 0)
         {
             velocity.X = direction * Speed;
-            _animated.Play("run");
+            AnimatedSprite2D.Play("run");
         }
         else
         {
             velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-            _animated.Play("idle");
+            AnimatedSprite2D.Play("idle");
         }
     
         // Flip the sprite based on velocity and mouse position
         if (velocity.X != 0)
         {
-            _animated.FlipH = velocity.X < 0;
+            AnimatedSprite2D.FlipH = velocity.X < 0;
         }
         else
         {
-            _animated.FlipH = GetGlobalMousePosition().X < GlobalPosition.X;
+            AnimatedSprite2D.FlipH = GetGlobalMousePosition().X < GlobalPosition.X;
         }
 
         Velocity = velocity;
