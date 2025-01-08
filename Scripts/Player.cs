@@ -11,12 +11,10 @@ public partial class Player : CharacterBody2D
 
     [Node] public HealthComponent HealthComponent { get; private set; }
     [Node] private AnimatedSprite2D AnimatedSprite2D { get; set; }
-    
+
     public override void _Notification(int what)
     {
-        if (what == NotificationSceneInstantiated) {
-            WireNodes();
-        }
+        if (what == NotificationSceneInstantiated) WireNodes();
     }
 
     public override void _Ready()
@@ -44,16 +42,12 @@ public partial class Player : CharacterBody2D
             velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
             AnimatedSprite2D.Play("idle");
         }
-    
+
         // Flip the sprite based on velocity and mouse position
         if (velocity.X != 0)
-        {
             AnimatedSprite2D.FlipH = velocity.X < 0;
-        }
         else
-        {
             AnimatedSprite2D.FlipH = GetGlobalMousePosition().X < GlobalPosition.X;
-        }
 
         Velocity = velocity;
         MoveAndSlide();

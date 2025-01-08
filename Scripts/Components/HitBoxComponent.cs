@@ -1,4 +1,5 @@
 ﻿using Godot;
+using GodotUtilities.Util;
 
 namespace ChikenGun.Scripts.Components;
 
@@ -6,8 +7,7 @@ namespace ChikenGun.Scripts.Components;
 public partial class HitBoxComponent : Area2D
 {
     [Export] private int Damage { get; set; } = 10;
-
-
+    
     public override void _Ready()
     {
         AreaEntered += OnAreaEntered;
@@ -17,7 +17,7 @@ public partial class HitBoxComponent : Area2D
     {
         if (area is not HurtBoxComponent hurtBox) return;
         if (hurtBox.GetParent() == GetParent())
-            GD.PushError($"Layer and Mask collision between {Name} and {hurtBox.Name} is not allowed!");
+            Logger.Error($"Layer and Mask collision between {Name} and {hurtBox.Name} is not allowed!");
 
         hurtBox.HealthComponent.TakeDamage(Damage);
     }
