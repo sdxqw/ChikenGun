@@ -14,10 +14,4 @@ public partial class HurtBoxComponent : Area2D
     {
         if (what == NotificationSceneInstantiated) WireNodes();
     }
-
-    public override void _Ready()
-    {
-        if (HealthComponent == null)
-            Logger.Error($"HurtBoxComponent on {Name} does not have a HealthComponent assigned!");
-    }
 }
