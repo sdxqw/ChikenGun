@@ -11,6 +11,7 @@ public partial class Player : CharacterBody2D
 
     [Node] public HealthComponent HealthComponent { get; private set; }
     [Node] private AnimatedSprite2D AnimatedSprite2D { get; set; }
+    [Node] private InitWeapon InitWeapon { get; set; }
 
     public override void _Notification(int what)
     {
@@ -43,11 +44,14 @@ public partial class Player : CharacterBody2D
             AnimatedSprite2D.Play("idle");
         }
 
+        if (Input.IsActionJustPressed("Attack")) InitWeapon.Attack();
+
         // Flip the sprite based on velocity and mouse position
         if (velocity.X != 0)
             AnimatedSprite2D.FlipH = velocity.X < 0;
         else
             AnimatedSprite2D.FlipH = GetGlobalMousePosition().X < GlobalPosition.X;
+
 
         Velocity = velocity;
         MoveAndSlide();

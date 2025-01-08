@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://cpqdaodo6d2a2"]
+
+[ext_resource type="Texture2D" uid="uid://dcsf557rks28s" path="res://Assets/16x16.png" id="1_1dgm6"]
+[ext_resource type="Script" path="res://Scripts/Weapon.cs" id="1_47mpk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qumc1"]
+atlas = ExtResource("1_1dgm6")
+region = Rect2(0, 144, 16, 16)
+
+[resource]
+script = ExtResource("1_47mpk")
+Damage = 20
+Texture = SubResource("AtlasTexture_qumc1")

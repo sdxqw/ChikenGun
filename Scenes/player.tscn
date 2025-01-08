@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7swggpe6kuc1"]
+[gd_scene load_steps=15 format=3 uid="uid://c7swggpe6kuc1"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_nnb3j"]
 [ext_resource type="Script" path="res://Scripts/Components/HealthComponent.cs" id="1_u0vpe"]
 [ext_resource type="Script" path="res://Scripts/Components/HurtBoxComponent.cs" id="2_xe6tv"]
 [ext_resource type="Texture2D" uid="uid://cfpr26yl1rrey" path="res://Resources/characters.tres" id="5_cn50n"]
+[ext_resource type="PackedScene" uid="uid://k17faoijvqrc" path="res://Scenes/init_weapon.tscn" id="5_dpot0"]
+[ext_resource type="Resource" uid="uid://cpqdaodo6d2a2" path="res://Scenes/Weapons/FireWeapon.tres" id="6_82kcl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vto4i"]
 radius = 8.0
@@ -82,3 +84,7 @@ shape = SubResource("RectangleShape2D_t85p2")
 sprite_frames = SubResource("SpriteFrames_j8fw3")
 animation = &"run"
 autoplay = "idle"
+
+[node name="InitWeapon" parent="." instance=ExtResource("5_dpot0")]
+position = Vector2(10, 1)
+Weapon = ExtResource("6_82kcl")
