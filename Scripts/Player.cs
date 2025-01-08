@@ -7,7 +7,7 @@ namespace ChikenGun.Scripts;
 [Scene]
 public partial class Player : CharacterBody2D
 {
-    private const float Speed = 300.0f;
+    private const float Speed = 100.0f;
 
     [Node] public HealthComponent HealthComponent { get; private set; }
     [Node] private AnimatedSprite2D AnimatedSprite2D { get; set; }

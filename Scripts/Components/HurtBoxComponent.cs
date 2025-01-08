@@ -1,17 +1,16 @@
 ﻿using Godot;
-using GodotUtilities;
 using GodotUtilities.Util;
 
 namespace ChikenGun.Scripts.Components;
 
 [GlobalClass]
-[Scene]
 public partial class HurtBoxComponent : Area2D
 {
-    [Node] public HealthComponent HealthComponent { get; private set; }
+    [Export] public HealthComponent HealthComponent { get; private set; }
 
-    public override void _Notification(int what)
+    public override void _Ready()
     {
-        if (what == NotificationSceneInstantiated) WireNodes();
+        if (HealthComponent == null)
+            Logger.Error("HurtBoxComponent does not have a HealthComponent assigned!");
     }
 }

@@ -11,31 +11,31 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t85p2"]
 size = Vector2(14, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ea3b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bue7p"]
 atlas = ExtResource("5_cn50n")
-region = Rect2(128, 192, 16, 16)
+region = Rect2(128, 240, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rj4ex"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_47udg"]
 atlas = ExtResource("5_cn50n")
-region = Rect2(192, 192, 16, 16)
+region = Rect2(128, 240, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6svk1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgs3p"]
 atlas = ExtResource("5_cn50n")
-region = Rect2(208, 192, 16, 16)
+region = Rect2(144, 240, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0mki6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q241v"]
 atlas = ExtResource("5_cn50n")
-region = Rect2(224, 192, 16, 16)
+region = Rect2(160, 240, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1g0ey"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oux87"]
 atlas = ExtResource("5_cn50n")
-region = Rect2(240, 192, 16, 16)
+region = Rect2(176, 240, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j8fw3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7ea3b")
+"texture": SubResource("AtlasTexture_bue7p")
 }],
 "loop": true,
 "name": &"idle",
@@ -43,26 +43,24 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rj4ex")
+"texture": SubResource("AtlasTexture_47udg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6svk1")
+"texture": SubResource("AtlasTexture_cgs3p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0mki6")
+"texture": SubResource("AtlasTexture_q241v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1g0ey")
+"texture": SubResource("AtlasTexture_oux87")
 }],
 "loop": true,
 "name": &"run",
 "speed": 6.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("HealthComponent", "_animated")]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_nnb3j")
-HealthComponent = NodePath("HealthComponent")
-_animated = NodePath("AnimatedSprite2D")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("1_u0vpe")
@@ -82,6 +80,5 @@ shape = SubResource("RectangleShape2D_t85p2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_j8fw3")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.292667

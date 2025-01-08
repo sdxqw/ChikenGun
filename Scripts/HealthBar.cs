@@ -7,7 +7,6 @@ public partial class HealthBar : TextureProgressBar
 {
     [Export] private HealthComponent HealthComponent { get; set; }
 
-
     public override void _Ready()
     {
         if (HealthComponent == null)
